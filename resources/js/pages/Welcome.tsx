@@ -4,6 +4,7 @@ import { Post } from '@/types/posts';
 import { Head, Link } from '@inertiajs/react';
 import ListPost from '@/components/posts/ListPost';
 
+
 export default function Welcome({auth, posts, canRegister}: PageProps<{posts: Post[], canRegister: boolean}>) {
     return (
         <>
