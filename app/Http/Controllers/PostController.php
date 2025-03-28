@@ -56,8 +56,7 @@ class PostController extends Controller
         ]);
     }
 
-    public function update(Request $request, $post) {
-
+    public function update(Request $request, Post $post) {
         $validated = $request->validate([
             'title' => 'required|string|string:255',
             'description' => 'required|string',

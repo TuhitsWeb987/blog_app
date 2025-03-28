@@ -1,6 +1,7 @@
+import ListPost from '@/components/posts/ListPost';
 import AppLayout from '@/layouts/app-layout';
-import { type BreadcrumbItem } from '@/types';
-import { DashboardProps } from '@/types/posts';
+import { PageProps, type BreadcrumbItem } from '@/types';
+import { Post } from '@/types/posts';
 import { Head, Link } from '@inertiajs/react';
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -10,7 +11,11 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Dashboard({userPosts}: DashboardProps) {
+interface Props extends PageProps {
+    userPosts: Post[];
+}
+
+export default function Dashboard({ auth, userPosts }: Props) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Dashboard" />
@@ -22,10 +27,22 @@ export default function Dashboard({userPosts}: DashboardProps) {
                                 <h2 className='text-2xl font-semibold text-gray-900'>
                                     Mes publications
                                 </h2>
-                                <Link href={route('posts.create')}>
+                                <Link href={route('posts.create')} className='inline-flex items-center px-4 py-2 border text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700'>
                                     Créer un post
                                 </Link>
                             </div>
+                            {userPosts.length > 0 ? (
+                                <ListPost posts={userPosts} showAuthor={false} canEdit={true}/>
+                            ) : (
+                                <div className='text-center py-12'>
+                                    <p className='mb-4 text-gray-500'>
+                                        Vous n'avez pas encore créé de posts
+                                    </p>
+                                    <Link href={route('posts.create')} className='text-indigo-600 hover:text-indigo-700'>
+                                        Créer votre premier post
+                                    </Link>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

@@ -17,11 +17,11 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::post('/post/{post}/like', [PostController::class, 'like'])->name('posts.like');
 });
 
-Route::get('posts/{posts}', [PostController::class, 'show'])->name('posts.show');
+Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
 Route::get('/dashboard', function(){
     return Inertia::render('Dashboard', [
-        'usersPost' => Auth::user()->posts()->with('author')->latest()->get()
+        'userPosts' => Auth::user()->posts()->with('author')->latest()->get()
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 

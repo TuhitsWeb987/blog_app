@@ -35,7 +35,7 @@ class Post extends Model
         return Auth::check() && $this->likedBy->contains('id', Auth::id());
     }
 
-    public function getLikeCountAttribute(): int {
+    public function getLikesCountAttribute(): int {
         return $this->likedBy->count();
     }
 

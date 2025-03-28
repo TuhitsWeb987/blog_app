@@ -3,8 +3,7 @@ import { Post, Props } from '@/types/posts'
 import { Link, router, usePage } from '@inertiajs/react'
 import { useState } from 'react';
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
-import { Edit, Eye, EyeIcon, Heart, Trash } from 'lucide-react';
-import { link } from 'fs';
+import { Edit, Eye, Heart, Trash } from 'lucide-react';
 
 export default function ListPost({ posts, showAuthor = true }: Props) {
   
